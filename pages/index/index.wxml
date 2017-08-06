@@ -1,0 +1,6 @@
+<!--index.wxml-->
+<view class="container">
+  <button bindtap="upload_pic">{{button_text}}</button>
+  <text>{{text}}</text>
+  <image src="{{image_src}}"></image>
+</view>
