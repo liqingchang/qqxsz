@@ -7,10 +7,20 @@ var uploadTask
 
 Page({
   data: {
-     button_text: 'UPLOAD',
+     button_text: '生成学生证',
+     name : "老王",
+  },
+  bindNameInput: function(e) {
+    this.setData({
+      name: e.detail.value,      
+    })
   },
   upload_pic: function(e) {
     var that = this
+    if(this.data.name.length == 0){
+      util.toast("你一定要用老王做名字吗")
+      return
+    }
     wx: wx.chooseImage({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -23,7 +33,7 @@ Page({
           filePath: res.tempFilePaths[0],
           name: 'uploadfile',
           formData: {
-            'path':res.tempFilePaths[0]
+            'name': that.data.name
           },
           success: function (res) {
             console.log('返回值:', res.data)
