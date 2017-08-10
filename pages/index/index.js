@@ -5,22 +5,44 @@ var util = require('../../utils/util.js')
 var tmpFilePath
 var uploadTask
 
+
 Page({
   data: {
      button_text: '生成学生证',
      name : "老王",
-  },
-  bindNameInput: function(e) {
+     colleges: "家里系",
+     sexIndex: 0,
+     sexList: ["男", "女", "妖"],
+     degreeIndex: 0,
+     degreeList:["本科生", "硕士生", "博士生"],
+     id_number: "2017000001",
+     date: "2017",
+  }, bindNameInput: function(e) {
     this.setData({
       name: e.detail.value,      
     })
-  },
-  upload_pic: function(e) {
+  }, bindIdInput: function (e) {
+    this.setData({
+      id_number: e.detail.value,
+    })
+  }, bindCollegesInput: function(e) {
+    this.setData({
+      colleges: e.detail.value,
+    })
+  }, bindSexChange: function (e) {
+    this.setData({
+      sexIndex: e.detail.value
+    })
+  }, bindDegreeChange: function (e) {
+    this.setData({
+      degreeIndex: e.detail.value
+    })
+  }, bindDateChange: function (e) {
+    this.setData({
+      date: e.detail.value
+    })
+  },  upload_pic: function(e) {
     var that = this
-    if(this.data.name.length == 0){
-      util.toast("你一定要用老王做名字吗")
-      return
-    }
     wx: wx.chooseImage({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -33,7 +55,12 @@ Page({
           filePath: res.tempFilePaths[0],
           name: 'uploadfile',
           formData: {
-            'name': that.data.name
+            'name': that.data.name,
+            'colleges': that.data.colleges,
+            'sex': that.data.sexList[that.data.sexIndex],
+            'degree': that.data.degreeList[that.data.degreeIndex],
+            'id_number': that.data.id_number,
+            'date': that.data.date
           },
           success: function (res) {
             console.log('返回值:', res.data)
