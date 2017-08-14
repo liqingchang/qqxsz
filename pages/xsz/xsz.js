@@ -7,6 +7,12 @@ Page({
   data: {
       image_src:""
   },
+  onPicClick: function(e) {
+    console.log("PicClick")
+    wx.previewImage({
+      urls: [this.data.image_src],
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -63,6 +69,14 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    return {
+      path: '../index/index',
+      success: function (res) {
+        // 转发成功
+      },
+      fail: function (res) {
+        // 转发失败
+      }
+    }
   }
 })

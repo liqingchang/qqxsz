@@ -1,4 +1,4 @@
 <!--pages/xsz/xsz.wxml-->
 <view class="page__mt page__bd_spacing">
-  <image class="weui-btn" src="{{image_src}}"></image>
+  <image bindtap="onPicClick" class="weui-btn" src="{{image_src}}"></image>
 </view>

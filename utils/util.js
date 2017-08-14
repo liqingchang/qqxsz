@@ -26,7 +26,18 @@ function toast(msg){
   })
 }
 
+/**
+ * 显示内容
+ */
+function longtoast(msg) {
+  wx.showToast({
+    title: msg,
+    duration: 5000
+  })
+}
+
 module.exports = {
   formatTime: formatTime,
-  toast: toast
+  toast: toast,
+  longtoast:longtoast
 }

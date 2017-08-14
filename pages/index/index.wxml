@@ -1,6 +1,19 @@
 <!--index.wxml-->
 <view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
-  <view class="page__bd" >
+  <view class="page__bd">
+    <view class="weui-cells__title">学校：</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_select">
+        <view class="weui-cell__hd weui-cell__hd_in-select-after">
+          <view class="weui-label">学校</view>
+        </view>
+        <view class="weui-cell__bd">
+          <picker bindchange="bindSchoolChange" value="{{schoolIndex}}" range="{{schoolList}}">
+            <view class="weui-select weui-select_in-select-after">{{schoolList[schoolIndex]}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
     <view class="weui-cells__title">学生证内容：</view>
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell weui-cell_input">
@@ -49,10 +62,10 @@
       </view>
       <view class="weui-cell weui-cell_input">
         <view class="weui-cell__hd">
-          <view class="weui-label">入学年份</view>
+          <view class="weui-label">入学日期</view>
         </view>
         <view class="weui-cell__bd">
-          <picker mode="date" value="{{date}}" fields="year" start="1949" end="2020" bindchange="bindDateChange">
+          <picker mode="date" value="{{date}}" fields="day" start="1949-10-1" end="2020-09-01" bindchange="bindDateChange">
             <view class="weui-input">{{date}}</view>
           </picker>
         </view>

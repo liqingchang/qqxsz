@@ -7,6 +7,8 @@ var uploadTask
 
 Page({
   data: {
+    schoolIndex: 0,
+    schoolList: ["清华大学", "北京大学"],
     button_text: '生成学生证',
     name: "老王",
     colleges: "家里系",
@@ -15,8 +17,12 @@ Page({
     degreeIndex: 0,
     degreeList: ["本科生", "硕士生", "博士生"],
     id_number: "2017000001",
-    date: "2017",
+    date: '2017-08-25',
     uploading: false
+  }, bindSchoolChange: function (e) {
+    this.setData({
+      schoolIndex: e.detail.value
+    })
   }, bindNameInput: function (e) {
     this.setData({
       name: e.detail.value,
@@ -64,15 +70,26 @@ Page({
             'sex': that.data.sexList[that.data.sexIndex],
             'degree': that.data.degreeList[that.data.degreeIndex],
             'id_number': that.data.id_number,
-            'date': that.data.date
+            'date': that.data.date,
+            'school': that.data.schoolIndex,
           },
           success: function (res) {
             console.log('返回值:', res.data)
-            wx.navigateTo({
-              url: '../xsz/xsz?image=' + res.data
-            })
+            console.log(res.statusCode)
+            if (res.statusCode == 200) {
+              wx.navigateTo({
+                url: '../xsz/xsz?image=' + res.data
+              })
+            } else{
+              util.longtoast('因为穷买不起服务器，所以可能出了什么问题，建议洗个脸后再试一次')
+            }
+          },
+          fall: function (res) {
+            console.log('失败:', res.data)
+            util.longtoast('因为穷买不起服务器，所以可能出了什么问题，建议洗个脸后再试一次')
+          },
+          complete: function (res) {
             that.setData({
-              // image_src: res.data,
               uploading: false
             })
           }
