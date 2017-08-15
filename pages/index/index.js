@@ -57,47 +57,51 @@ Page({
       success: function (res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         tmpFilePath = res.tempFilePaths
-        that.setData({
-          uploading: true
+        wx.navigateTo({
+          url: `../upload/upload?src=${tmpFilePath}&name=${that.data.name}&colleges=${that.data.colleges}&sex=${that.data.sexList[that.data.sexIndex]}&degree=${that.data.degreeList[that.data.degreeIndex]}&id_number=${that.data.id_number}&date=${that.data.date}&school=${that.data.schoolIndex}`
+          // url: `../upload/upload?src=${tmpFilePath}`
         })
-        uploadTask = wx.uploadFile({
-          url: 'https://4gun.net/upload',
-          filePath: res.tempFilePaths[0],
-          name: 'uploadfile',
-          formData: {
-            'name': that.data.name,
-            'colleges': that.data.colleges,
-            'sex': that.data.sexList[that.data.sexIndex],
-            'degree': that.data.degreeList[that.data.degreeIndex],
-            'id_number': that.data.id_number,
-            'date': that.data.date,
-            'school': that.data.schoolIndex,
-          },
-          success: function (res) {
-            console.log('返回值:', res.data)
-            console.log(res.statusCode)
-            if (res.statusCode == 200) {
-              wx.navigateTo({
-                url: '../xsz/xsz?image=' + res.data
-              })
-            } else{
-              util.longtoast('因为穷买不起服务器，所以可能出了什么问题，建议洗个脸后再试一次')
-            }
-          },
-          fall: function (res) {
-            console.log('失败:', res.data)
-            util.longtoast('因为穷买不起服务器，所以可能出了什么问题，建议洗个脸后再试一次')
-          },
-          complete: function (res) {
-            that.setData({
-              uploading: false
-            })
-          }
-        })
-        uploadTask.onProgressUpdate((res) => {
-          console.log('上传进度', res.progress)
+        // that.setData({
+        //   uploading: true
+        // })
+        // uploadTask = wx.uploadFile({
+        //   url: 'https://4gun.net/upload',
+        //   filePath: res.tempFilePaths[0],
+        //   name: 'uploadfile',
+        //   formData: {
+        //     'name': that.data.name,
+        //     'colleges': that.data.colleges,
+        //     'sex': that.data.sexList[that.data.sexIndex],
+        //     'degree': that.data.degreeList[that.data.degreeIndex],
+        //     'id_number': that.data.id_number,
+        //     'date': that.data.date,
+        //     'school': that.data.schoolIndex,
+        //   },
+        //   success: function (res) {
+        //     console.log('返回值:', res.data)
+        //     console.log(res.statusCode)
+        //     if (res.statusCode == 200) {
+        //       wx.navigateTo({
+        //         url: '../xsz/xsz?image=' + res.data
+        //       })
+        //     } else{
+        //       util.longtoast('因为穷买不起服务器，所以可能出了什么问题，建议洗个脸后再试一次')
+        //     }
+        //   },
+        //   fall: function (res) {
+        //     console.log('失败:', res.data)
+        //     util.longtoast('因为穷买不起服务器，所以可能出了什么问题，建议洗个脸后再试一次')
+        //   },
+        //   complete: function (res) {
+        //     that.setData({
+        //       uploading: false
+        //     })
+        //   }
+        // })
+        // uploadTask.onProgressUpdate((res) => {
+        //   console.log('上传进度', res.progress)
 
-        })
+        // })
       }
     })
 

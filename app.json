@@ -1,13 +1,14 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
+    "pages/upload/upload",
     "pages/logs/logs",
     "pages/xsz/xsz"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "青青学生证",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   }
 }

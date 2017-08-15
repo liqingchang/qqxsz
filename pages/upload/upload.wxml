@@ -1,0 +1,13 @@
+<import src="../../we-cropper/dist/weCropper.wxml" />
+
+<view class="cropper-wrapper">
+  <template is="weCropper" data="{{...cropperOpt}}" />
+  <view class="cropper-buttons">
+    <view class="cropper-buttons-left" bindtap="cancel">
+      取消
+    </view>
+    <view class="cropper-buttons-right" bindtap="upload">
+      完成
+    </view>
+  </view>
+</view>
