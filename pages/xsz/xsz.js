@@ -1,4 +1,6 @@
 // pages/xsz/xsz.js
+var util = require('../../utils/util.js')
+
 Page({
 
   /**
@@ -12,6 +14,25 @@ Page({
     wx.previewImage({
       urls: [this.data.image_src],
     })
+  }, save_pic: function(res) {
+    var that = this
+    wx.downloadFile({
+      url: that.data.image_src, 
+      success: function (res) {
+        wx.saveImageToPhotosAlbum({
+          filePath: res.tempFilePath,
+          success(res) {
+            console.log("保存成功")
+            util.toast("保存成功")
+          }, fail(res) {
+            console.log("保存失败")
+            console.log(res)
+            util.toast("保存失败")
+          }
+        })
+      }
+    })
+    
   },
 
   /**

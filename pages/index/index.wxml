@@ -73,7 +73,6 @@
     </view>
     <view class="page__mt page__bd_spacing">
       <button class="weui-btn" type="primary" bindtap="upload_pic" loading="{{uploading}}">{{button_text}}</button>
-      <image class="weui-btn" src="{{image_src}}"></image>
     </view>
   </view>
 </view>
