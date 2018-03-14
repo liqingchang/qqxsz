@@ -7,6 +7,8 @@ var app = getApp()
 var util = require('../../utils/util.js')
 var tmpFilePath
 var uploadTask
+var cutWidth = 148
+var cutHeight = 252
 Page({
   data: {
     cropperOpt: {
@@ -16,10 +18,10 @@ Page({
       scale: 2.5,
       zoom: 8,
       cut: {
-        x: (width - 74) / 2,
-        y: (height - 126) / 2,
-        width: 74,
-        height: 126
+        x: (width - cutWidth) / 2,
+        y: (height - cutHeight) / 2,
+        width: cutWidth,
+        height: cutHeight
       }
     }
   },
@@ -95,6 +97,25 @@ Page({
       date: option.date,
       school: option.school
     })
+    if(this.data.school == 1) {
+      cutWidth = 160
+      cutHeight = 202
+      this.setData({
+        cropperOpt: {
+          id: 'cropper',
+          width,
+          height,
+          scale: 2.5,
+          zoom: 8,
+          cut: {
+            x: (width - cutWidth) / 2,
+            y: (height - cutHeight) / 2,
+            width: cutWidth,
+            height: cutHeight
+          }
+        }
+      })
+    }
 
     console.log("name" + this.data.name)
 

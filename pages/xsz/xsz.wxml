@@ -4,7 +4,8 @@
     <view class="page__title">还差一步，就能开始装逼....</view>
     <image bindtap="onPicClick" class="xsz_image" src="{{image_src}}"></image>
     <view class="page__mt page__bd_spacing">
-      <button class="weui-btn" type="primary" bindtap="save_pic">保存图片</button>
+      <button loading="{{downloading}}" class="weui-btn" type="primary" bindtap="onSaveClick">保存图片</button>
     </view>
+    <image class="ad_image" bindtap="onAdClick" src="ad.png"/>
   </view>
 </view>

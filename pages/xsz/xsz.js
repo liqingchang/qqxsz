@@ -7,15 +7,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-      image_src:""
+      image_src:"",
+      downloading: false
   },
   onPicClick: function(e) {
     console.log("PicClick")
     wx.previewImage({
       urls: [this.data.image_src],
     })
-  }, save_pic: function(res) {
+  }, onSaveClick: function(res) {
     var that = this
+    that.setData({
+      downloading: true
+    }),
     wx.downloadFile({
       url: that.data.image_src, 
       success: function (res) {
@@ -28,11 +32,16 @@ Page({
             console.log("保存失败")
             console.log(res)
             util.toast("保存失败")
+          }, complete(res) {
+            that.setData({
+              downloading: false
+            })
           }
         })
+      }, complete: function(res) {
+        
       }
     })
-    
   },
 
   /**
