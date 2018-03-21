@@ -4,10 +4,10 @@
   <template is="weCropper" data="{{...cropperOpt}}" />
   <view class="cropper-buttons">
     <view class="cropper-buttons-left" bindtap="cancel">
-      取消
+      返回
     </view>
     <view class="cropper-buttons-right" bindtap="upload">
-      完成
+      生成
     </view>
   </view>
 </view>

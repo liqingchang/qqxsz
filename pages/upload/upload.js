@@ -7,8 +7,8 @@ var app = getApp()
 var util = require('../../utils/util.js')
 var tmpFilePath
 var uploadTask
-var cutWidth = 148
-var cutHeight = 252
+var cutWidth = 178
+var cutHeight = 230
 Page({
   data: {
     cropperOpt: {
@@ -39,7 +39,6 @@ Page({
     wx.navigateBack({})
   },
   upload () {
-    
     var that = this
     this.wecropper.getCropperImage((avatar) => {
       if (avatar) {
@@ -61,16 +60,16 @@ Page({
             console.log('返回值:', res.data)
             console.log(res.statusCode)
             if (res.statusCode == 200) {
-              wx.navigateTo({
+              wx.redirectTo({
                 url: '../xsz/xsz?image=' + res.data
               })
             } else{
-              util.longtoast('因为穷买不起服务器，所以可能出了什么问题，建议洗个脸后再试一次')
+              util.longtoast('服务器皮了一下，建议洗个脸后再试一次')
             }
           },
           fall: function (res) {
             console.log('失败:', res.data)
-            util.longtoast('因为穷买不起服务器，所以可能出了什么问题，建议洗个脸后再试一次')
+            util.longtoast('服务器皮了一下，建议洗个脸后再试一次')
           },
           complete: function (res) {
             that.setData({
@@ -80,7 +79,6 @@ Page({
         })
         uploadTask.onProgressUpdate((res) => {
           console.log('上传进度', res.progress)
-
         })
       } else {
         console.log('获取图片失败，请稍后重试')
@@ -98,8 +96,8 @@ Page({
       school: option.school
     })
     if(this.data.school == 1) {
-      cutWidth = 160
-      cutHeight = 202
+      cutWidth = 164
+      cutHeight = 204
       this.setData({
         cropperOpt: {
           id: 'cropper',
